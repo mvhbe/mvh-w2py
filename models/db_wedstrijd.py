@@ -8,9 +8,10 @@ def wedstrijd_link(datum, row):
 
 db.define_table('wedstrijd',
                 Field("kalender", "reference kalender"),
-                Field('datum', 'date', unique=True, notnull=True,
+                Field('datum', 'date', unique=True, notnull=True, required=True,
                       requires=IS_DATE(format='%d/%m/%Y')),
-                Field('omschrijving', 'string', length=100),
+                Field('omschrijving', 'string', length=100, notnull=True,
+                      required=True),
                 Field('inleg', 'string', length=100,
                       default="3,00 euro/deelnemer"),
                 Field('vooruit', 'string', default="0,50 euro/deelnemer"),
