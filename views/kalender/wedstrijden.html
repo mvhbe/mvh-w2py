@@ -8,7 +8,7 @@
          <tbody>
     {{for wedstrijd in wedstrijden:}}
                 <tr>
-                    <td>{{=wedstrijd.datum.strftime("%d-%m-%Y")}}</td>
+                    <td>{{=wedstrijd_link(wedstrijd.datum, wedstrijd)}}</td>
                     <td>{{=wedstrijd.omschrijving}}</td>
                 </tr>
     {{pass}}

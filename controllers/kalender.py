@@ -36,8 +36,10 @@ def nieuw():
 def wedstrijden():
     kalender_id = request.args(0)
     kalender = db.kalender(kalender_id)
+    db.wedstrijd.datum.represent = wedstrijd_link
     wedstrijden = (
-        db(db.wedstrijd.kalender==kalender.id).select(db.wedstrijd.datum,
-                                                   db.wedstrijd.omschrijving,
-                                                   orderby=db.wedstrijd.datum))
+        db(db.wedstrijd.kalender==kalender.id).select(db.wedstrijd.id,
+                                                      db.wedstrijd.datum,
+                                                      db.wedstrijd.omschrijving,
+                                                      orderby=db.wedstrijd.datum))
     return dict(kalender=kalender, wedstrijden=wedstrijden)

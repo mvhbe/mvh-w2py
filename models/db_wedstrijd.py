@@ -4,7 +4,7 @@ def wedstrijd_string(datum):
     return datum
 
 def wedstrijd_link(datum, row):
-    return A(datum, _href=URL('wedstrijd', 'detail',args=row.id))
+    return A(datum.strftime("%d/%m/%Y"), _href=URL('wedstrijd', 'detail',args=row.id))
 
 db.define_table('wedstrijd',
                 Field("kalender", "reference kalender"),

@@ -89,3 +89,19 @@ CREATE TABLE wedstrijd(
 success!
 success!
 success!
+timestamp: 2013-12-03T19:39:09.448893
+CREATE TABLE reeks(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wedstrijd INTEGER REFERENCES wedstrijd (id) ON DELETE CASCADE,
+    reeksnummer INTEGER,
+    aanvang TIME,
+    duur TIME,
+    opmerkingen TEXT,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+success!
