@@ -3,6 +3,10 @@
 <h2>Wedstrijden {{=kalender.jaar}}</h2>
 
 <br>
+{{=A("Terug", _href=URL("kalender", "detail", args=kalender.id), _class="btn")}}
+{{=A("Nieuwe wedstrijd", _href=URL("wedstrijd", "nieuw"), _class="btn")}}
+
+<br><br>
 {{if wedstrijden:}}
      <table>
          <tbody>
