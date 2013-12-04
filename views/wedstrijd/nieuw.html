@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+
+<h2>Nieuwe wedstrijd</h2>
+
+<br>
+{{=A("Terug", _href=URL("kalender", "wedstrijden", args=kalender.id), _class="btn")}}
+
+<br><br>
+{{=jaar_string(kalender.jaar, kalender)}}
+{{=form}}
