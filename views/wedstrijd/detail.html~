@@ -9,8 +9,8 @@
 <table>
     <tbody>
         <tr>
-            <td><label>Kalender:</lable></td>
-            <td>{{=jaar_string(kalender.jaar, kalender)}}</td>
+            <td class="w2p_fl"><label>Kalender:</lable></td>
+            <td class="w2p_fw">{{=jaar_string(kalender.jaar, kalender)}}</td>
         </tr>
     </tbody>
 </table>
