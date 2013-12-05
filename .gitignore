@@ -3,4 +3,5 @@
 sessions/
 .idea/
 errors/
-*~
+*.*~
+databases/
