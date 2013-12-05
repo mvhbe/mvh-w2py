@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+def reeks_link(nummer, row):
+    return A(nummer, _href=URL('reeks', 'detail',args=row.id))
+
+
 db.define_table('reeks',
                 Field("wedstrijd", "reference wedstrijd", required=True),
                 Field('reeksnummer', 'integer'),

@@ -8,6 +8,7 @@
 '%d days ago': '%d dagen geleden',
 '%d weeks ago': '%d weken gelden',
 '%d/%m/%Y': '%d/%m/%Y',
+'%d/%m/%Y %H:%M:%S': '%d/%m/%Y %H:%M:%S',
 '%s %%{row} deleted': '%s rijen verwijderd',
 '%s %%{row} updated': '%s rijen geupdate',
 '%s selected': '%s geselecteerd',

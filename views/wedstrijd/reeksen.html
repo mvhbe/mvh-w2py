@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+<h2>Reeksen</h2>
+<h6>{{=wedstrijd.datum}} - {{=wedstrijd.omschrijving}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("wedstrijd", "detail", args=wedstrijd.id), _class="btn")}}
+{{=A("Nieuwe reeks", _href=URL("reeks", "nieuw", args=wedstrijd.id),_class="btn")}}
+
+<br><br>
+{{if reeksen:}}
+     <table>
+         <tbody>
+    {{for reeks in reeksen:}}
+                <tr>
+                    <td>{{=reeks_link(reeks.reeksnummer, reeks)}}</td>
+                    <td>{{=reeks.aanvang}}</td>
+                </tr>
+    {{pass}}
+        </tbody>
+    </table>
+{{pass}}
