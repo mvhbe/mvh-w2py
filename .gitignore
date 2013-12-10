@@ -4,4 +4,5 @@ sessions/
 .idea/
 errors/
 *.*~
+.*.swp
 databases/
