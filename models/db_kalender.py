@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-def jaar_string(jaar, row):
+def jaar_string(jaar):
     return "Wedstrijdkalender " + jaar
 
 def jaar_link(jaar, row):
-    return A(jaar_string(jaar, row), _href=URL('kalender', 'detail', args=row.id))
+    return A(jaar_string(jaar), _href=URL('kalender', 'detail', args=row.id))
 
 def wedstrijden_link(row):
     return A("wedstrijden", _href=URL("kalender", "wedstrijden", args=row.id))
