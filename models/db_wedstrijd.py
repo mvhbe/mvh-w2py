@@ -17,3 +17,5 @@ db.define_table('wedstrijd',
                 Field('vooruit', 'string', default="0,50 euro/deelnemer"),
                 Field('opmerkingen', 'text'),
                 auth.signature)
+
+db.wedstrijd.kalender.requires = IS_IN_DB(db, db.kalender.id, "%(jaar)s")
