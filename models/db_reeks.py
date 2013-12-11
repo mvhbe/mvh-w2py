@@ -11,3 +11,7 @@ db.define_table('reeks',
                 Field('duur', 'time', requires=IS_TIME(), default="02:00"),
                 Field('opmerkingen', 'text'),
                 auth.signature)
+
+def validate_reeksnummer(wedstrijd_id):
+    reeksen = db(db.reeks.wedstrijd==wedstrijd_id)
+    db.reeks.reeksnummer.requires = IS_NOT_IN_DB(reeksen, db.reeks.reeksnummer)
