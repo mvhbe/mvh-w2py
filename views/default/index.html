@@ -9,13 +9,15 @@
             <tr>
                 <td><b>Datum</b></td>
                 <td><b>Wedstrijd</b></td>
+                <td><b>Aanvang</b></td>
             </tr>
         </th>
         <tbody>
             {{for wedstrijd in wedstrijden:}}
                 <tr>
-                    <td>{{=wedstrijd.datum}}</td>
-                    <td>{{=wedstrijd.omschrijving}}</td>
+                    <td>{{=wedstrijd.wedstrijd.datum}}</td>
+                    <td>{{=wedstrijd.wedstrijd.omschrijving}}</td>
+                    <td>{{=wedstrijd.reeks.aanvang}}</td>
                 </tr>
             {{pass}}
         </tbody>

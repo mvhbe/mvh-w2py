@@ -16,9 +16,13 @@ TODO = "Under construction ! Available soon."
 
 def index():
     begin_maand, einde_maand = mvhutils.begin_einde_huidige_maand()
-    query = ((db.wedstrijd.datum >= begin_maand)&
-            (db.wedstrijd.datum <= einde_maand))
-    wedstrijden = db(query).select(db.wedstrijd.datum, db.wedstrijd.omschrijving)
+    query = ((db.wedstrijd.id==db.reeks.wedstrijd)&
+             (db.reeks.reeksnummer==1)&
+             (db.wedstrijd.datum >= begin_maand)&
+             (db.wedstrijd.datum <= einde_maand))
+    wedstrijden = db(query).select(db.wedstrijd.datum,
+                                   db.wedstrijd.omschrijving,
+                                   db.reeks.aanvang)
     #wedstrijden = SQLFORM.grid(query,
     #                    create=False, details=False, csv=False,
     #                    editable=False, deletable=False,
@@ -34,10 +38,13 @@ def index():
 def kalender():
     jaar = str(mvhutils.huidig_jaar())
     kalender = db.kalender(db.kalender.jaar==jaar)
-    wedstrijden = db(db.wedstrijd.kalender==
-                     kalender).select(db.wedstrijd.datum,
-                                                   db.wedstrijd.omschrijving,
-                                                   orderby=db.wedstrijd.datum)
+    query = ((db.wedstrijd.kalender==kalender)&
+             (db.wedstrijd.id==db.reeks.wedstrijd)&
+             (db.reeks.reeksnummer==1))
+    wedstrijden = db(query).select(db.wedstrijd.datum,
+                                   db.wedstrijd.omschrijving,
+                                   db.reeks.aanvang,
+                                   orderby=db.wedstrijd.datum)
     return dict(wedstrijden=wedstrijden, huidig_jaar=jaar)
 
 
