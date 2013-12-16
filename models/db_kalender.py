@@ -15,6 +15,9 @@ db.define_table('kalender',
                 auth.signature)
 
 db.kalender.jaar.represent = jaar_string
-db.kalender.jaar.requires=[IS_NOT_IN_DB(db, db.kalender.jaar),
-                           IS_INT_IN_RANGE(1900, 2999)]
+db.kalender.jaar.requires=[IS_INT_IN_RANGE(1900, 2999,
+                                           "Jaar ongeldig !"),
+                           IS_NOT_IN_DB(db, db.kalender.jaar,
+                                        error_message = "Jaar bestaat reeds !"),
+                           ]
 

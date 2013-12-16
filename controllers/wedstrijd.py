@@ -2,6 +2,7 @@
 
 @auth.requires_login()
 def detail():
+    T.force("nl")
     wedstrijd_id = request.args(0)
     wedstrijd = db.wedstrijd(wedstrijd_id)
     kalender = db.kalender(db.kalender.id==wedstrijd.kalender)
@@ -14,6 +15,7 @@ def detail():
 
 @auth.requires_login()
 def nieuw():
+    T.force("nl")
     kalender_id = request.args(0)
     kalender = db.kalender(kalender_id)
     db.wedstrijd.kalender.readable = False
@@ -26,6 +28,7 @@ def nieuw():
 
 @auth.requires_login()
 def reeksen():
+    T.force("nl")
     wedstrijd_id = request.args(0)
     wedstrijd = db.wedstrijd(wedstrijd_id)
     print "wedstrijd :" , wedstrijd
