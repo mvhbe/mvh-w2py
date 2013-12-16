@@ -10,10 +10,11 @@ def wedstrijden_link(row):
     return A("wedstrijden", _href=URL("kalender", "wedstrijden", args=row.id))
 
 db.define_table('kalender',
-                Field('jaar', 'string', length=4, unique=True, notnull=True,
-                      requires=IS_INT_IN_RANGE(1900, 2999)),
+                Field('jaar', 'string', length=4, unique=True, notnull=True),
                 Field('opmerkingen', 'text'),
                 auth.signature)
 
 db.kalender.jaar.represent = jaar_string
+db.kalender.jaar.requires=[IS_NOT_IN_DB(db, db.kalender.jaar),
+                           IS_INT_IN_RANGE(1900, 2999)]
 
