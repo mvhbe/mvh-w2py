@@ -6,13 +6,13 @@ import sys
 import mvhutils
 suite = unittest.TestSuite()
 
-print "sys.argv : ", sys.argv
+APP = "mvh"
 
 # get all files with tests
-test_files = glob.glob('applications/' + sys.argv[2] + '/tests/*/*.py')
+test_files = glob.glob('applications/' + APP + '/tests/*/*.py')
 
 if not len(test_files):
-    raise Exception("No files found for app: " + sys.argv[2])
+    raise Exception("No files found for app: " + APP)
 
 # Bring all unit tests in and their controllers/models/whatever
 for test_file in test_files:
@@ -26,10 +26,8 @@ for test_file in test_files:
     suite.addTest(unittest.makeSuite(globals()[filename+directory]))
 
     # Load the to-be-tested file
-    execfile("applications/"+ sys.argv[2] + "/" + directory.lower() +
+    execfile("applications/"+ APP + "/" + directory.lower() +
              "s/" + filename.lower() + ".py", globals())
 
-
-db = mvhutils.setupTestDb() # Use the test database for all tests
 
 unittest.TextTestRunner(verbosity=2).run(suite)
