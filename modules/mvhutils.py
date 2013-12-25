@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import calendar
-import copy
 import datetime
 
 
 def huidige_datum():
-    return datetime.datetime.now()
+    return datetime.datetime.now().date()
 
 
 def huidig_jaar():
