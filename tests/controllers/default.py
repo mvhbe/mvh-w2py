@@ -2,7 +2,6 @@ import datetime
 import unittest
 from dateutil import relativedelta
 from gluon.globals import Request, Session, Storage, Response
-from testhelper import form_postvars
 
 db = setupTestDb() # Use the test database for all tests
 
@@ -34,6 +33,7 @@ class DefaultController(unittest.TestCase):
 
     def tearDown(self):
         db.wedstrijd.truncate()
+        db.reeks.truncate()
         db.commit()
 
 
