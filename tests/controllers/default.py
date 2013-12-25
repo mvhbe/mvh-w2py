@@ -10,11 +10,19 @@ VANDAAG = datetime.datetime.now().date()
 EEN_MAAND_GELEDEN = VANDAAG - relativedelta.relativedelta(months=-1)
 EEN_MAAND_VERDER = VANDAAG + relativedelta.relativedelta(months=+1)
 
-def nieuweWedstrijd(kalender=1,datum=VANDAAG,
+def insertWedstrijd(kalender=1,datum=VANDAAG,
                     omschrijving="Leden wedstrijd " +
                                  VANDAAG.strftime("%d/%m/%Y")):
     db.wedstrijd.insert(kalender=kalender, datum=datum,
                             omschrijving=omschrijving)
+
+def insertReeks(wedstrijd=1,reeksnummer=1):
+    db.reeks.insert(wedstrijd=wedstrijd, reeksnummer=reeksnummer)
+
+
+def nieuweWedstrijd(datum=VANDAAG):
+    insertWedstrijd(datum=datum)
+    insertReeks()
     db.commit()
 
 
@@ -25,12 +33,12 @@ class DefaultController(unittest.TestCase):
 
 
     def tearDown(self):
-        db.wedstrijd.delete()
+        db.wedstrijd.truncate()
         db.commit()
 
 
     def testIndexGeeftGeenWedstrijdenTerugBijLegeDb(self):
-        """Geen data aanwezig"""
+        """Geen wedstrijden bij lege database"""
         response = index()
         self.assertEqual(0, len(response["wedstrijden"]))
 
@@ -38,14 +46,19 @@ class DefaultController(unittest.TestCase):
     def testIndexGeeftWedstrijdHuidigeMaandTerug(self):
         """Wedstrijddatum huidige maand wordt opgehaald"""
         nieuweWedstrijd()
+        response = index()
         self.assertEqual(1, len(response["wedstrijden"]))
 
 
     def testIndexGeeftWedstrijdVolgendeMaandNietTerug(self):
         """Wedstrijddatum volgende maand wordt niet opgehaald"""
-        self.fail("to be implemented")
+        nieuweWedstrijd(EEN_MAAND_VERDER)
+        response = index()
+        self.assertEqual(0, len(response["wedstrijden"]))
 
 
     def testIndexGeeftWedstrijdVorigeMaandNietTerug(self):
         """Wedstrijddatum vorige maand wordt niet opgehaald"""
-        self.fail("to be implemented")
+        nieuweWedstrijd(EEN_MAAND_GELEDEN)
+        response = index()
+        self.assertEqual(0, len(response["wedstrijden"]))
