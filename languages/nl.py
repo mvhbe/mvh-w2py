@@ -212,6 +212,7 @@
 'Jaar': 'Jaar',
 'Jaar bestaat reeds !': 'Jaar bestaat reeds !',
 'Jaar bestaat reeds of is leeg': 'Jaar bestaat reeds of is leeg',
+'Jaar ongeldig !': 'Jaar ongeldig !',
 'JSON': 'JSON',
 'Kalender': 'Kalender',
 'Kalenders': 'Kalenders',
