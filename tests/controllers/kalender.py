@@ -1,30 +1,44 @@
+import mvhutils
 import unittest
 from gluon.globals import Request, Session, Storage, Response
 from testhelper import form_postvars
 
 db = setupTestDb() # Use the test database for all tests
-loggedIn = False
+
+HUIDIG_JAAR = mvhutils.huidig_jaar()
 
 
 def login():
-    insert_user()
-    auth.user = db(db.auth_user.id > 0).select()
-    loggedIn = True
+    insertUser()
+    db.commit()
+    auth.user = db(db.auth_user.id==1).select()[0]
 
 
-def insert_user():
+def insertUser():
     db.auth_user.insert(first_name="first", last_name="last",
             email="first.last@telenet.be")
 
+
+def insertKalender(jaar):
+    db.kalender.insert(jaar=jaar)
+
+
+def nieuweKalender():
+    insertKalender(HUIDIG_JAAR)
+    db.commit()
+
+
 class KalenderController(unittest.TestCase):
 
+    loggedIn = False
+
     def setUp(self):
-        if not loggedIn:
-            login()
+        login()
         request = Request({})
 
 
     def tearDown(self):
+        db.auth_user.truncate()
         db.kalender.truncate()
         db.wedstrijd.truncate()
         db.reeks.truncate()
@@ -35,3 +49,9 @@ class KalenderController(unittest.TestCase):
         """Geen kalenders bij lege database"""
         response = overzicht()
         self.assertEqual(0, len(response["kalenders"]))
+
+    def testOverzichtGeeftKalenderTerug(self):
+        """Kalender wordt opgehaald"""
+        nieuweKalender()
+        response = overzicht()
+        self.assertEqual(1, len(response["kalenders"]))
