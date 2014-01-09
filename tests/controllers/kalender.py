@@ -34,8 +34,7 @@ class KalenderController(unittest.TestCase):
 
     def setUp(self):
         login()
-        request = Request({})
-
+        self.request = Request({})
 
     def tearDown(self):
         db.auth_user.truncate()
@@ -43,7 +42,6 @@ class KalenderController(unittest.TestCase):
         db.wedstrijd.truncate()
         db.reeks.truncate()
         db.commit()
-
 
     def testOverzichtGeeftGeenKalendersTerugBijLegeDb(self):
         """Geen kalenders bij lege database"""
@@ -55,3 +53,14 @@ class KalenderController(unittest.TestCase):
         nieuweKalender()
         response = overzicht()
         self.assertEqual(1, len(response["kalenders"]))
+
+    def testIndex(self):
+        """Detail kalender wordt in form weer gegeven"""
+        #nieuweKalender()
+        self.request.args.append(1)
+        form_postvars("kalender", {"jaar": 2013, "opmerkingen": None},
+                      self.request, action="update", record_id=None)
+        response = detail()
+        print "\nresponse = ", response
+        print "\nresponse[form] = ", response["form"]
+        print "\nresponse[form] = ", response["form"].errors

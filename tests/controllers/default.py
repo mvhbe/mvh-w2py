@@ -30,18 +30,15 @@ class DefaultController(unittest.TestCase):
     def setUp(self):
         request = Request({})
 
-
     def tearDown(self):
         db.wedstrijd.truncate()
         db.reeks.truncate()
         db.commit()
 
-
     def testIndexGeeftGeenWedstrijdenTerugBijLegeDb(self):
         """Geen wedstrijden bij lege database"""
         response = index()
         self.assertEqual(0, len(response["wedstrijden"]))
-
 
     def testIndexGeeftWedstrijdHuidigeMaandTerug(self):
         """Wedstrijddatum huidige maand wordt opgehaald"""
@@ -49,13 +46,11 @@ class DefaultController(unittest.TestCase):
         response = index()
         self.assertEqual(1, len(response["wedstrijden"]))
 
-
     def testIndexGeeftWedstrijdVolgendeMaandNietTerug(self):
         """Wedstrijddatum volgende maand wordt niet opgehaald"""
         nieuweWedstrijd(EEN_MAAND_VERDER)
         response = index()
         self.assertEqual(0, len(response["wedstrijden"]))
-
 
     def testIndexGeeftWedstrijdVorigeMaandNietTerug(self):
         """Wedstrijddatum vorige maand wordt niet opgehaald"""
