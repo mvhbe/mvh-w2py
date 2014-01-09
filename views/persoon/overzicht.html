@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+
+<h2>Overzicht personen</h2>
+
+<br>
+{{=A("nieuwe persoon", _href=URL("persoon", "nieuw"), _class="btn")}}
+
+<br><br>
+{{if personen:}}
+    <table>
+        {{for persoon in personen:}}
+        <tr>
+            <td>{{=persoon_link(persoon.achternaam,
+                                persoon.voornaam, persoon)}}</td>
+        </tr>
+        {{pass}}
+    </table>
+{{pass}}
