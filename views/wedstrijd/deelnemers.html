@@ -1,0 +1,24 @@
+{{extend 'layout.html'}}
+
+<h2>Deelnemers</h2>
+<h6>{{=wedstrijd.datum}} - {{=wedstrijd.omschrijving}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("wedstrijd", "detail", args=wedstrijd.id), _class="btn")}}
+{{=A("Nieuwe deelnemer", _href=URL("deelnemer", "nieuw", args=wedstrijd.id),_class="btn")}}
+
+<br><br>
+{{if deelnemers:}}
+     <table>
+         <tbody>
+            {{for deelnemer in deelnemers:}}
+                <tr>
+                    <td>{{=deelnemer.deelnemer.nummer}}</td>
+                    <td>{{=deelnemer_link(deelnemer.deelnemer)}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{else:}}
+    Geen deelnemers beschikbaar.
+{{pass}}

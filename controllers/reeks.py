@@ -5,7 +5,7 @@ def detail():
     wedstrijd = db.wedstrijd(db.wedstrijd.id==reeks.wedstrijd)
     db.reeks.wedstrijd.readable = False
     db.reeks.wedstrijd.writable = False
-    validate_reeksnummer(reeks.wedstrijd)
+    valideer_reeksnummer(reeks.wedstrijd)
     form = crud.update(db.reeks, reeks,
                        next=URL("wedstrijd", "reeksen", args=wedstrijd.id))
     return dict(form=form, wedstrijd=wedstrijd)
@@ -18,7 +18,7 @@ def nieuw():
     db.reeks.wedstrijd.readable = False
     db.reeks.wedstrijd.writable = False
     db.reeks.wedstrijd.default = wedstrijd.id
-    validate_reeksnummer(wedstrijd_id)
+    valideer_reeksnummer(wedstrijd_id)
     form = crud.create(db.reeks,
                        next=URL("wedstrijd", "reeksen", args=wedstrijd.id))
     return dict(form=form, wedstrijd=wedstrijd)

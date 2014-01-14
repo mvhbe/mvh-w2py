@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+
+<h2>Detail deelnemer</h2>
+<h6>{{=wedstrijd.datum}} - {{=wedstrijd.omschrijving}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("wedstrijd", "deelnemers", args=wedstrijd.id), _class="btn")}}
+
+<br><br>
+{{=form}}

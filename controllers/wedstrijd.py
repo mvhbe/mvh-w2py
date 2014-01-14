@@ -12,7 +12,6 @@ def detail():
                        next=URL("kalender", "wedstrijden", args=kalender.id))
     return dict(form=form, kalender=kalender)
 
-
 @auth.requires_login()
 def nieuw():
     T.force("nl")
@@ -25,14 +24,24 @@ def nieuw():
                        next=URL("kalender", "wedstrijden", args=kalender_id))
     return dict(form=form, kalender=kalender)
 
-
 @auth.requires_login()
 def reeksen():
     T.force("nl")
     wedstrijd_id = request.args(0)
     wedstrijd = db.wedstrijd(wedstrijd_id)
-    print "wedstrijd :" , wedstrijd
     db.wedstrijd.datum.represent = wedstrijd_link
     reeksen = (
         db(db.reeks.wedstrijd==wedstrijd.id).select(orderby=db.reeks.reeksnummer))
     return dict(wedstrijd=wedstrijd, reeksen=reeksen)
+
+@auth.requires_login()
+def deelnemers():
+    T.force("nl")
+    wedstrijd_id = request.args(0)
+    wedstrijd = db.wedstrijd(wedstrijd_id)
+    db.wedstrijd.datum.represent = wedstrijd_link
+    deelnemers = (
+        db(db.deelnemer.wedstrijd==wedstrijd.id).
+            select(orderby=db.deelnemer.deelnemer)
+    )
+    return dict(wedstrijd=wedstrijd, deelnemers=deelnemers)

@@ -115,6 +115,8 @@
 'Datum bestaat reeds !': 'Datum bestaat reeds !',
 'db': 'db',
 'DB Model': 'DB Model',
+'Deelnemer bestaat reeds !': 'Deelnemer bestaat reeds !',
+'Deelnemer niet ingevuld !': 'Deelnemer niet ingevuld !',
 'defines tables': 'definieer tabellen',
 'Delete': 'Verwijder',
 'delete': 'verwijder',

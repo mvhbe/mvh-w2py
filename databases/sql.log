@@ -105,3 +105,79 @@ CREATE TABLE reeks(
 );
 success!
 success!
+timestamp: 2014-01-09T21:21:24.852325
+CREATE TABLE persoon(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nummer INTEGER NOT NULL UNIQUE,
+    achternaam CHAR(50) NOT NULL,
+    voornaam CHAR(50) NOT NULL,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-01-14T19:29:53.799962
+CREATE TABLE deelnemer(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wedstrijd INTEGER REFERENCES wedstrijd (id) ON DELETE CASCADE,
+    persoon INTEGER REFERENCES persoon (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-01-14T21:00:12.968828
+ALTER TABLE deelnemer ADD deelenemer INTEGER REFERENCES persoon (id) ON DELETE CASCADE;
+success!
+success!
+timestamp: 2014-01-14T21:04:46.955218
+ALTER TABLE deelnemer ADD deelnemer INTEGER REFERENCES persoon (id) ON DELETE CASCADE;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
